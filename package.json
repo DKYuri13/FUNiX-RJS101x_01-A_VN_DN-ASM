@@ -1,0 +1,24 @@
+{
+  "name": "git-test",
+  "version": "1.0.0",
+  "description": "This is the Git and Node basic learning project",
+  "main": "index.html",
+  "scripts": {
+    "start": "npm run lite",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lite": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DKYuri13/FUNiX-RJS101x_01-A_VN_DN-ASM.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DKYuri13/FUNiX-RJS101x_01-A_VN_DN-ASM/issues"
+  },
+  "homepage": "https://github.com/DKYuri13/FUNiX-RJS101x_01-A_VN_DN-ASM#readme",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
