@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import { Media } from 'reactstrap';
+import { STAFFS } from '../shared/staffs';
 
 class Menu extends Component {
 
     constructor(props){
         super(props);
 
-        this.state = {
-            selectedStaff: null
-        }
+        this.state = STAFFS
     }
 
     render() {
-        const staffList = this.props.STAFFS.map((staff)=>{
+        const staffList = this.state.STAFFS.map((staff) => {
             return (
-                <div>
-
+                <div key={staff.id} className="col-12 mt-5">
+                    <Media tag="li">
+                        <Media left middle>
+                            <Media object src={staff.name} />
+                        </Media>
+                    </Media>
                 </div>
             );
         });
