@@ -1,9 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Menu from "./components/StaffListComponent";
+import List from "./components/StaffListComponent";
 import { Navbar, NavbarBrand } from 'reactstrap';
-import { STAFFS, DEPARTMENTS, ROLE } from './shared/staffs';
+import { STAFFS } from './shared/staffs';
 import React, { Component } from 'react';
 
 class App extends Component {
@@ -20,11 +19,11 @@ class App extends Component {
   return (
     <div className="App">
       <Navbar dark color="primary">
-        <div className="container">
+        <div className="container text-center">
           <NavbarBrand href="/">Ứng dụng quản lý nhân sự v1.0</NavbarBrand>
         </div>
       </Navbar>
-      <Menu staffs={this.state.staffs} />
+      <List staffs={this.state.staffs} />
     </div>
   );
 }

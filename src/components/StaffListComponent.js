@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardImgOverlay, CardBody,
-    CardTitle } from 'reactstrap';
+import { Card, CardBody, CardText, CardTitle } from 'reactstrap';
+import dateFormat from 'dateformat'; 
 
-class Menu extends Component {
+class List extends Component {
 
     constructor(props){
         super(props);
@@ -12,17 +12,23 @@ class Menu extends Component {
         }
     }
 
-    onDishSelect(staff) {
-        this.setState({ selectedStaff: staff});
+    onStaffSelect(staff) {
+        this.setState({selectedStaff: staff});
     }
 
     renderStaff(staff) {
         if (staff != null)
             return(
                 <Card>
-                    <CardImg top src={staff.name} alt={staff.name} />
                     <CardBody>
-                      <CardTitle>{staff.name}</CardTitle>
+                        <CardTitle><h4>Họ và tên: {staff.name}</h4></CardTitle>
+                        <CardText>
+                            <p>Ngày sinh: {dateFormat(staff.doB, "dd/mm/yyyy")}</p>
+                            <p>Ngày vào công ty: {dateFormat(staff.startDate, "dd/mm/yyyy")}</p>
+                            <p>Phòng ban: {staff.department.name}</p>
+                            <p>Số ngày nghỉ còn lại: {staff.annualLeave}</p>
+                            <p>Số ngày đã làm thêm: {staff.overTime}</p>
+                        </CardText>
                     </CardBody>
                 </Card>
             );
@@ -33,15 +39,14 @@ class Menu extends Component {
     }
 
     render() {
-        const menu = this.props.staffs.map((staff)=>{
+        const list = this.props.staffs.map((staff)=>{
             return (
-                <div key={staff.id} className="col-12 col-md-5 m-1">
+                <div key={staff.id} className="col-12 col-md-4 mt-2">
                     <Card key={staff.id}
                         onClick={() => this.onStaffSelect(staff)}>
-                        <CardImg width="100%" src={staff.image} alt={staff.name} />
-                        <CardImgOverlay>
+                        <CardBody>
                             <CardTitle>{staff.name}</CardTitle>
-                        </CardImgOverlay>
+                        </CardBody>
                     </Card>
                 </div>
             );
@@ -49,11 +54,11 @@ class Menu extends Component {
 
         return (
             <div className='container'>
-                <div className='row'>
-                    {menu}
+                <div className='row text-center'>
+                    {list}
                 </div>
                 <div className="row">
-                  <div  className="col-12 col-md-5 m-1">
+                  <div  className="col-12 col-md-4 mt-2">
                     {this.renderStaff(this.state.selectedStaff)}
                   </div>
                 </div>
@@ -61,4 +66,4 @@ class Menu extends Component {
         );
     }
 }
-export default Menu;
+export default List;
