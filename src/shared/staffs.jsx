@@ -1,35 +1,5 @@
-export const DEPARTMENTS =
-    [
-        {
-            id: "Dept01",
-            name: "Sale",
-            numberOfStaff: 1
-        },
-        {
-            id: "Dept02",
-            name: "HR",
-            numberOfStaff: 3
-        },
-        {
-            id: "Dept03",
-            name: "Marketing",
-            numberOfStaff: 2
-        },
-        {
-            id: "Dept04",
-            name: "IT",
-            numberOfStaff: 1
-        },
-        {
-            id: "Dept05",
-            name: "Finance",
-            numberOfStaff: 11
-        }
-    ]
-export const ROLE = {
-    NORMAL_STAFF: "Nhân viên",
-    MANAGER_STAFF: "Quản lý"
-}
+import { DEPARTMENTS } from "./departments"
+
 export const STAFFS =
     [
         {
@@ -39,9 +9,10 @@ export const STAFFS =
             salaryScale: 1.1,
             startDate: "2019-04-30T08:59:00.000Z",
             department: DEPARTMENTS[0],
+            featured: true,
             annualLeave: 1,
             overTime: 1,
-            image: '/assets/images/alberto.png',
+            image: '/assets/images/alisa.jpg',
         },
         {
             id: 1,
@@ -50,9 +21,10 @@ export const STAFFS =
             salaryScale: 1.2,
             startDate: "2019-04-30T08:59:00.000Z",
             department: DEPARTMENTS[1],
+            featured: false,
             annualLeave: 2,
             overTime: 3,
-            image: '/assets/images/alberto.png',
+            image: '/assets/images/anastasiia.jpg',
         },
         {
             id: 2,
@@ -61,9 +33,10 @@ export const STAFFS =
             salaryScale: 1,
             startDate: "2019-04-30T08:59:00.000Z",
             department: DEPARTMENTS[3],
+            featured: false,
             annualLeave: 4,
             overTime: 5,
-            image: '/assets/images/alberto.png',
+            image: '/assets/images/dante.jpg',
         },
         {
             id: 3,
@@ -72,9 +45,10 @@ export const STAFFS =
             salaryScale: 1,
             startDate: "2019-04-30T08:59:00.000Z",
             department: DEPARTMENTS[2],
+            featured: false,
             annualLeave: 6,
             overTime: 7,
-            image: '/assets/images/alberto.png',
+            image: '/assets/images/kratos.jpg',
         },
         {
             id: 4,
@@ -83,9 +57,10 @@ export const STAFFS =
             salaryScale: 1,
             startDate: "2019-04-30T08:59:00.000Z",
             department: DEPARTMENTS[2],
+            featured: false,
             annualLeave: 8,
             overTime: 1,
-            image: '/assets/images/alberto.png',
+            image: '/assets/images/batman.jpg',
         },
         {
             id: 5,
@@ -94,9 +69,10 @@ export const STAFFS =
             salaryScale: 1,
             startDate: "2019-04-30T08:59:00.000Z",
             department: DEPARTMENTS[4],
+            featured: false,
             annualLeave: 9,
             overTime: 10,
-            image: '/assets/images/alberto.png',
+            image: '/assets/images/masterchief.jpg',
         },
         {
             id: 6,
@@ -105,9 +81,10 @@ export const STAFFS =
             salaryScale: 1,
             startDate: "2019-04-30T08:59:00.000Z",
             department: DEPARTMENTS[4],
+            featured: false,
             annualLeave: 9,
             overTime: 10,
-            image: '/assets/images/alberto.png',
+            image: '/assets/images/gordonfreeman.jpg',
         },
         {
             id: 7,
@@ -116,9 +93,10 @@ export const STAFFS =
             salaryScale: 1,
             startDate: "2019-04-30T08:59:00.000Z",
             department: DEPARTMENTS[2],
+            featured: false,
             annualLeave: 9,
             overTime: 10,
-            image: '/assets/images/alberto.png',
+            image: '/assets/images/techies.png',
         },
         {
             id: 8,
@@ -127,9 +105,10 @@ export const STAFFS =
             salaryScale: 1,
             startDate: "2019-04-30T08:59:00.000Z",
             department: DEPARTMENTS[3],
+            featured: false,
             annualLeave: 9,
             overTime: 10,
-            image: '/assets/images/alberto.png',
+            image: '/assets/images/carljohnson.png',
         },
         {
             id: 9,
@@ -138,9 +117,10 @@ export const STAFFS =
             salaryScale: 1,
             startDate: "2019-04-30T08:59:00.000Z",
             department: DEPARTMENTS[4],
+            featured: false,
             annualLeave: 9,
             overTime: 10,
-            image: '/assets/images/alberto.png',
+            image: '/assets/images/thewitcherhenrycavill.jpg',
         },
         {
             id: 10,
@@ -149,9 +129,10 @@ export const STAFFS =
             salaryScale: 1,
             startDate: "2019-04-30T08:59:00.000Z",
             department: DEPARTMENTS[4],
+            featured: false,
             annualLeave: 9,
             overTime: 10,
-            image: '/assets/images/alberto.png',
+            image: '/assets/images/johnwick.jpg',
         },
         {
             id: 11,
@@ -160,9 +141,10 @@ export const STAFFS =
             salaryScale: 1,
             startDate: "2019-04-30T08:59:00.000Z",
             department: DEPARTMENTS[4],
+            featured: false,
             annualLeave: 9,
             overTime: 10,
-            image: '/assets/images/alberto.png',
+            image: '/assets/images/deadspace.jpg',
         },
         {
             id: 12,
@@ -171,9 +153,10 @@ export const STAFFS =
             salaryScale: 1,
             startDate: "2019-04-30T08:59:00.000Z",
             department: DEPARTMENTS[4],
+            featured: false,
             annualLeave: 9,
             overTime: 10,
-            image: '/assets/images/alberto.png',
+            image: '/assets/images/putin.jpg',
         },
         {
             id: 13,
@@ -182,9 +165,10 @@ export const STAFFS =
             salaryScale: 1,
             startDate: "2019-04-30T08:59:00.000Z",
             department: DEPARTMENTS[4],
+            featured: false,
             annualLeave: 9,
             overTime: 10,
-            image: '/assets/images/alberto.png',
+            image: '/assets/images/huan.jpg',
         },
         {
             id: 14,
@@ -193,9 +177,10 @@ export const STAFFS =
             salaryScale: 1,
             startDate: "2019-04-30T08:59:00.000Z",
             department: DEPARTMENTS[4],
+            featured: false,
             annualLeave: 9,
             overTime: 10,
-            image: '/assets/images/alberto.png',
+            image: '/assets/images/meninblack.jpg',
         },
         {
             id: 15,
@@ -204,9 +189,10 @@ export const STAFFS =
             salaryScale: 1,
             startDate: "2019-04-30T08:59:00.000Z",
             department: DEPARTMENTS[4],
+            featured: false,
             annualLeave: 9,
             overTime: 10,
-            image: '/assets/images/alberto.png',
+            image: '/assets/images/artanis.jpg',
         },
 
     ]
