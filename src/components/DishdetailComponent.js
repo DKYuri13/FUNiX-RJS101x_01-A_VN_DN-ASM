@@ -21,16 +21,16 @@ import { Link } from 'react-router-dom';
             return(
                 <div className="col-12 col-md-5 m-1">
                     <h4>Comments</h4>
-                    <div>
+                    <ul className="list-unstyled">
                      {comments.map(comment => {
                          return (
-                            <li className="list-unstyled">
+                            <li key={comment.id}>
                                 <p>{comment.comment}</p>
                                 <p>-- {comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
                             </li>
                          )
                      })}
-                    </div>
+                    </ul>
                 </div>
             );
         else
@@ -39,7 +39,7 @@ import { Link } from 'react-router-dom';
             );
     }
     const  DishDetail = (props) => {
-        if (this.props.dish != null)
+        if (props.dish != null)
             return(
                 <div className="container">
                 <div className="row">
