@@ -7,6 +7,7 @@ import Footer from './FooterComponent';
 import Home from './HomeComponent';
 import Contact from './ContactComponent';
 import { connect } from 'react-redux';
+import About from './AboutComponent'
 
 const mapStateToProps = state => {
   return {
