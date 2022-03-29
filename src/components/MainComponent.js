@@ -9,20 +9,26 @@ import Department from "./DepartmentComponent";
 import { STAFFS } from "../shared/staffs";
 import { DEPARTMENTS } from "../shared/departments";
 
-
 class Main extends Component {
 
   constructor(props) {
     super(props);
 
-    this.state ={
+    this.state = {
       staffs: STAFFS,
       departments: DEPARTMENTS
-    };
+    }
   }
 
   render() {
-
+  //tạo 1 function addstaf ở đây và truyền qua StafLít
+  const addStaff = (newStaff) =>{
+    //ở đây sau khi em nhận đc nhân viên mới em sẽ set lại state ở Main là cac component con đều đc render lại
+    this.setState({
+      staffs: STAFFS,
+      departments: DEPARTMENTS
+    })
+  }
     const StaffWithId = ({match}) => {
       const params = useParams(match);
       return(
@@ -35,7 +41,7 @@ class Main extends Component {
         <Header />
           <Routes>
               <Route path="/" element={<Navigate to="/list" />} />
-              <Route exact path='/list' element={<List staffs={this.state.staffs} />} />
+              <Route exact path='/list' element={<List staffs={this.state.staffs} addStaff={addStaff}/>} />
               <Route path='/list/:staffId' element={<StaffWithId />} />
               <Route path='/sheet' element={<Sheet staffs={this.state.staffs} />} />
               <Route path='/department' element={<Department departments={this.state.departments} />} />

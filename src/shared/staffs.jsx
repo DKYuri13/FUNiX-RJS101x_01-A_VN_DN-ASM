@@ -195,4 +195,4 @@ export const STAFFS =
             image: '/assets/images/artanis.jpg',
         },
 
-    ]
+    ];
