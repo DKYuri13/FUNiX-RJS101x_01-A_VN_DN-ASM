@@ -18,11 +18,11 @@ import { baseUrl } from '../shared/baseUrl';
             </div>
         )
     }
-    function RenderComments({comments, addComment, dishId}) {
+    function RenderComments({comments, postComment, dishId}) {
         if (comments != null)
             return(
                 <div className="col-12 col-md-5 m-1">
-                    <CommentForm dishId={dishId} addComment={addComment} />
+                    <CommentForm dishId={dishId} postComment={postComment} />
                     <h4>Comments</h4>
                     <ul className="list-unstyled">
                      {comments.map(comment => {
@@ -34,7 +34,7 @@ import { baseUrl } from '../shared/baseUrl';
                          );
                      })}
                     </ul>
-                    <CommentForm dishId={dishId} addComment={addComment} />
+                    <CommentForm dishId={dishId} postComment={postComment} />
                 </div>
             );
         else
@@ -63,7 +63,7 @@ import { baseUrl } from '../shared/baseUrl';
 
         handleSubmit(values) {
             this.toggleModal();
-            this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+            this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
             console.log('Current State is: ' + JSON.stringify(values));
             alert('Current State is: ' + JSON.stringify(values));
         }
@@ -175,7 +175,7 @@ import { baseUrl } from '../shared/baseUrl';
                     </div>
                     <div className="col-12 col-md-5 m-1">
                         <RenderComments comments={props.comments}
-                            addComment={props.addComment}
+                            postComment={props.postComment}
                             dishId={props.dish.id}
                         />
                     </div>
