@@ -39,7 +39,7 @@ function RenderListItem ({staff}) {
         const handleSubmit = (values) => {   
             const doBformat = doB.getFullYear() + '-' + (doB.getMonth() + 1) + '-' + doB.getDate();
             
-            if (values.name === undefined || values.name === "" || values.name < 3) {
+            if (values.name === undefined || values.name === "" || values.name.length < 3) {
                 alert('Tên phải dài hơn 3 ký tự');
                 return;
             }
@@ -54,14 +54,36 @@ function RenderListItem ({staff}) {
             else if (values.overTime === undefined || values.overTime === "" || !reg.test(values.overTime)) {
                 alert('Số ngày đã làm thêm phải là số');
                 return;
-            }   
-            
-            for(let i=0; i <= props.staffs.length; i++){
-                var id = i;
-            };
+            }
 
-            const newStaff = {id: id, ...values, featured: false, doB: doB, startDate: startDate, image:'/assets/images/alberto.png'};
-            props.staffs.push(newStaff);
+            const staffId = props.staffs.length;
+
+            const departmentName = String(values.department);
+            const departmentId = props.departments.filter((val) => {
+                if (departmentName === "") {
+                    return val;
+                } else if (val.name.toLowerCase().includes(departmentName.toLowerCase())) {
+                    return val;
+                }
+            }).map((val)=>{
+                return(val.id)
+            })
+            const newStaff = {
+                id: staffId,
+                name: values.name, 
+                featured: false, 
+                doB: doB,
+                departmentId: departmentId,
+                salaryScale: parseInt(values.salaryScale, 10),
+                startDate: startDate,
+                image:'/assets/images/alberto.png',
+                annualLeave: parseInt(values.annualLeave, 10),
+                overTime: parseInt(values.overTime, 10),
+            };
+            setDoB(new Date());
+            setStartDate(new Date());
+            console.log(newStaff);
+            props.postStaff(newStaff);
             handleShow();
             // event.preventDefault();
         }
@@ -89,77 +111,84 @@ function RenderListItem ({staff}) {
                     </Breadcrumb>
                 </div>
                 <div className='col-lg-2 col-md-5 mt-2'>
-                <div className='col-lg-2 col-md-5 mt-2'>
-                <Button onClick={handleShow}>+</Button>
-            </div>
-                <div className="row">
-                    <Modal isOpen={show} 
-                            toggle={handleShow}
-                    >
-                        <ModalHeader toggle={handleShow}><h4>Thêm nhân viên</h4></ModalHeader>
-                            <ModalBody>
-                                <LocalForm onSubmit={(values) => handleSubmit(values)}>
-                                        <Row className="form-group">
-                                                <Label htmlFor="name" md={4}>Tên</Label>
-                                                <Col md={8}>
-                                                    <Control.text model=".name" id="name" name="name"
-                                                        className="form-Control"/>
-                                                    <FormFeedback></FormFeedback>
-                                                </Col>
-                                            </Row>
+                    <div className='col-lg-2 col-md-5 mt-2'>
+                        <Button onClick={handleShow}>+</Button>
+                    </div>
+                    <div className="row">
+                        <Modal isOpen={show} 
+                                toggle={handleShow}
+                        >
+                            <ModalHeader toggle={handleShow}>Thêm nhân viên</ModalHeader>
+                                <ModalBody>
+                                    <LocalForm onSubmit={(values) => handleSubmit(values)}>
                                             <Row className="form-group">
-                                                <Label htmlFor="doB" md={4}>Ngày sinh</Label>
-                                                <Col md={8}>
-                                                    <DatePicker id="doB" selected={doB} onChange={date1=> setDoB(date1)}
-                                                        />
-                                                </Col>
-                                            </Row>
-                                            <Row className="form-group">
-                                                <Label htmlFor="startDate" md={4}>Ngày vào công ty</Label>
-                                                <Col md={8}>
-                                                    <DatePicker id="startDate" selected={startDate} onChange={date2=>setStartDate(date2)}
-                                                        />
-                                                </Col>
-                                            </Row>
-                                            <Row className="form-group">
-                                                <Label htmlFor="department" md={4}>Phòng Ban</Label>
-                                                <Col md={8}>
-                                                    <Control.select model=".department.name" id="department" name="department"
-                                                        className="form-control" defaultValue="Sale">
-                                                        <option>Sale</option>
-                                                        <option>HR</option>
-                                                        <option>Marketing</option>
-                                                        <option>IT</option>
-                                                        <option>Finance</option>
-                                                    </Control.select>
-                                                </Col>
-                                            </Row>
-                                            <Row className="form-group">
-                                                <Label htmlFor="salaryScale" md={4}>Số ngày nghỉ còn lại</Label>
-                                                <Col md={8}>
-                                                    <Control.text model=".annualLeave" id="annualLeave" name="annualLeave"
-                                                        className="form-control"/>
-                                                </Col>
-                                            </Row>
-                                            <Row className="form-group">
-                                                <Label htmlFor="overTime" md={4}>Số ngày đã làm thêm</Label>
-                                                <Col md={8}>
-                                                    <Control.text model=".overTime" id="overTime" name="overTime"
-                                                        className="form-control"/>
-                                                </Col>
-                                            </Row>
-                                            <Row className="form-group">
-                                                <Col md={{size: 10, offset: 2}}>
-                                                    <Button type="submit" color="primary">Thêm</Button>
-                                                </Col>
-                                            </Row>
-                                        </LocalForm>
-                            </ModalBody>
-                    </Modal>
-                </div>
+                                                    <Label htmlFor="name" md={4}>Tên</Label>
+                                                    <Col md={8}>
+                                                        <Control.text model=".name" id="name" name="name"
+                                                            className="form-Control"/>
+                                                        <FormFeedback></FormFeedback>
+                                                    </Col>
+                                                </Row>
+                                                <Row className="form-group">
+                                                    <Label htmlFor="doB" md={4}>Ngày sinh</Label>
+                                                    <Col md={8}>
+                                                        <DatePicker id="doB" selected={doB} onChange={date1=> setDoB(date1)}
+                                                            />
+                                                    </Col>
+                                                </Row>
+                                                <Row className="form-group">
+                                                    <Label htmlFor="startDate" md={4}>Ngày vào công ty</Label>
+                                                    <Col md={8}>
+                                                        <DatePicker id="startDate" selected={startDate} onChange={date2=>setStartDate(date2)}
+                                                            />
+                                                    </Col>
+                                                </Row>
+                                                <Row className="form-group">
+                                                    <Label htmlFor="department" md={4}>Phòng Ban</Label>
+                                                    <Col md={8}>
+                                                        <Control.select model=".department" id="department" name="department"
+                                                            className="form-control" defaultValue="Sale">
+                                                            <option>Sale</option>
+                                                            <option>HR</option>
+                                                            <option>Marketing</option>
+                                                            <option>IT</option>
+                                                            <option>Finance</option>
+                                                        </Control.select>
+                                                    </Col>
+                                                </Row>
+                                                <Row className="form-group">
+                                                    <Label htmlFor="salaryScale" md={4}>Hệ số lương</Label>
+                                                    <Col md={8}>
+                                                        <Control.text model=".salaryScale" id="salaryScale" name="salaryScale"
+                                                            className="form-control"/>
+                                                    </Col>
+                                                </Row>
+                                                <Row className="form-group">
+                                                    <Label htmlFor="annualLeave" md={4}>Số ngày nghỉ còn lại</Label>
+                                                    <Col md={8}>
+                                                        <Control.text model=".annualLeave" id="annualLeave" name="annualLeave"
+                                                            className="form-control"/>
+                                                    </Col>
+                                                </Row>
+                                                <Row className="form-group">
+                                                    <Label htmlFor="overTime" md={4}>Số ngày đã làm thêm</Label>
+                                                    <Col md={8}>
+                                                        <Control.text model=".overTime" id="overTime" name="overTime"
+                                                            className="form-control"/>
+                                                    </Col>
+                                                </Row>
+                                                <Row className="form-group">
+                                                    <Col md={{size: 10, offset: 2}}>
+                                                        <Button type="submit" color="primary">Thêm</Button>
+                                                    </Col>
+                                                </Row>
+                                            </LocalForm>
+                                </ModalBody>
+                        </Modal>
+                    </div>
                 </div>
                 <div className="col-lg-8 col-md-5 mt-2">
-                    <LocalForm onSubmit={(values) => handleSubmit(values)}>
+                    <LocalForm>
                             <Col className="form-group">
                                     <Col md={6}>
                                         <Control.text model="name" className="form-control" onChange={event => {setSearchTerm(event.target.value)}} />

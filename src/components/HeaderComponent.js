@@ -30,7 +30,7 @@ class Header extends Component {
                       <NavLink className="nav-link" to='/list'><span className="fa fa-home fa-lg"></span> Nhân Viên</NavLink>
                   </NavItem>
                   <NavItem>
-                      <NavLink className="nav-link" to='/department'><span className="fa fa-list fa-lg"></span> Phòng Ban</NavLink>
+                      <NavLink className="nav-link" to='/departments'><span className="fa fa-list fa-lg"></span> Phòng Ban</NavLink>
                   </NavItem>
                   <NavItem>
                       <NavLink className="nav-link" to='/sheet'><span className="fa fa-list fa-lg"></span> Bảng lương</NavLink>

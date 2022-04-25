@@ -1,17 +1,20 @@
 import React from "react";
 import { Card, CardText, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 
 function RenderDepartmentItem ({department}) {
         
         return (
                 <Card>
-                    <CardTitle><h4>{department.name}</h4></CardTitle>
-                    <CardText>Số lượng nhân viên: {department.numberOfStaff}</CardText>
+                    <Link to={`/departments/${department.id}`}>
+                        <CardTitle>{department.name}</CardTitle>
+                        <CardText>Số lượng nhân viên: {department.numberOfStaff}</CardText>
+                    </Link>
                 </Card>
             );
         };
-const Department = (props) => {
+const Departments = (props) => {
         const department = props.departments.map((department) => {
             return (
                 <div key={department.id} className="col-12 col-lg-3 col-md-5 m-1 p-0">
@@ -34,4 +37,4 @@ const Department = (props) => {
         );
 }
 
-export default Department;
+export default Departments;
