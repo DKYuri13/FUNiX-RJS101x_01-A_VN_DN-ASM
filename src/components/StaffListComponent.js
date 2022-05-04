@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Card, CardImg, CardText, Breadcrumb, BreadcrumbItem, Col, Button, Modal, ModalBody, ModalHeader, Row, Label, FormFeedback} from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Control, LocalForm } from 'react-redux-form';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import '../style.css';
 
 function RenderListItem ({staff}) {
     return(
@@ -66,6 +68,7 @@ function RenderListItem ({staff}) {
                     return val;
                 }
             }).map((val)=>{
+                val.numberOfStaff++;
                 return(val.id)
             })
             const newStaff = {
@@ -95,10 +98,15 @@ function RenderListItem ({staff}) {
                     return val;
                 }
             }).map((val) => {
+                console.log(props)
             return (
-            <div key={val.id} className="col-lg-2 col-md-4 col-sm-6">
-                <RenderListItem staff={val} />
-            </div>
+                <div className="col-lg-2 col-md-4 col-sm-6">
+                <TransitionGroup>
+                    <CSSTransition key={val.id} classNames="list" timeout={300} appear>
+                            <RenderListItem staff={val} />
+                    </CSSTransition>
+                </TransitionGroup>
+                </div>
             )
         });
 
@@ -114,10 +122,8 @@ function RenderListItem ({staff}) {
                     <div className='col-lg-2 col-md-5 mt-2'>
                         <Button onClick={handleShow}>+</Button>
                     </div>
-                    <div className="row">
-                        <Modal isOpen={show} 
-                                toggle={handleShow}
-                        >
+                    <div className="row">                   
+                        <Modal isOpen={show}>
                             <ModalHeader toggle={handleShow}>Thêm nhân viên</ModalHeader>
                                 <ModalBody>
                                     <LocalForm onSubmit={(values) => handleSubmit(values)}>
@@ -132,15 +138,13 @@ function RenderListItem ({staff}) {
                                                 <Row className="form-group">
                                                     <Label htmlFor="doB" md={4}>Ngày sinh</Label>
                                                     <Col md={8}>
-                                                        <DatePicker id="doB" selected={doB} onChange={date1=> setDoB(date1)}
-                                                            />
+                                                        <DatePicker id="doB" selected={doB} onChange={date1=> setDoB(date1)}/>
                                                     </Col>
                                                 </Row>
                                                 <Row className="form-group">
                                                     <Label htmlFor="startDate" md={4}>Ngày vào công ty</Label>
                                                     <Col md={8}>
-                                                        <DatePicker id="startDate" selected={startDate} onChange={date2=>setStartDate(date2)}
-                                                            />
+                                                        <DatePicker id="startDate" selected={startDate} onChange={date2=>setStartDate(date2)}/>
                                                     </Col>
                                                 </Row>
                                                 <Row className="form-group">
@@ -197,9 +201,9 @@ function RenderListItem ({staff}) {
                     </LocalForm>
                 </div>   
                 </div>
-                <div className="row">
-                    {list}
-                </div>
+                        <div className="row">
+                            {list}
+                        </div>
             </div>
         );
     };
